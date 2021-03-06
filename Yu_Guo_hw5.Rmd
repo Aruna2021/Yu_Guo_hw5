@@ -1,0 +1,79 @@
+---
+title: "Yu_Guo_hw5"
+author: "Yu_Aruna"
+date: "2/26/2021"
+output: word_document
+---
+
+```{r}
+
+         Stockreturns <- c(-8.36,   1.63,  -2.27, -2.93,  -2.70, 
+                           -2.93, -9.14, -2.64, 6.82,   -2.35, 
+                           -3.58,   6.13,   7.00, -15.25, -8.66,
+                           -1.03, -9.16,  -1.25, -1.22,  -10.27,
+                           -5.11, -0.80,  -1.44,  1.28,  -0.65,
+                            4.34,   12.22, -7.21, -0.09, 7.34, 
+                            5.04,  -7.24,  -2.14, -1.01,  -1.41, 
+                            12.03, -2.53,  4.33,  1.35)
+
+```
+
+#1) Use and show R code to find the mean of the sample data.
+
+```{r}
+mean = mean(Stockreturns)
+```
+
+
+#2) Use and show R code to find the standard deviation of the sample data
+
+```{r}
+sd = sd(Stockreturns)
+```
+
+
+#3) Assuming a normal distribution, use and show R code to find the proportion of returns that are less than  -1.5.
+
+```{r}
+pnorm(q = -1.5, mean = mu, sd = sd)
+```
+
+
+#4) Assuming a normal distribution, use and show R code to find return value that is above 70% of the returns
+
+```{r}
+qnorm(p = 0.3, mean = mean, sd = sd)
+```
+
+
+#5) Use and show R code to find Q1 for the data.
+
+```{r}
+summary(Stockreturns)
+```
+
+
+#6) Explore the data by producing and examining a boxplot and checking for normality.
+
+```{r}
+boxplot(Stockreturns)
+qqnorm(Stockreturns)
+qqline(Stockreturns)
+```
+
+
+#7) State the appropriate null and alternative hypothesis required for the appropriate t test. The average of the S&P 500 stock index for the same period was 0.95%
+# H(0) :  broker perform equal to 0.95
+# H(A) :  broker perform worse than 0.95
+ 
+
+
+#8) Use and show R code that will output the needed p value and confidence interval to determine if the null hypothesis should be rejected. Since the p value is 0.01827 less than 0.05, we have the evidence that we can reject the H(0).
+
+```{r}
+t.test(Stockreturns, mu = .95, alternative = "less", conf.level = .95)
+ #t.test(Stockreturns, mu, conf.level = .95)
+```
+
+
+#9) Now answer the question originally stated.  Does the broker perform worse than average? (Explain or justify in two or three sentences) Since the p value is 0.01827 less than 0.05, we have the evidence that we can reject the H(0). So it is possible that the broker perform worse than average.
